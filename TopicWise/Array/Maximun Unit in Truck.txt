@@ -1,0 +1,21 @@
+Question: Maximum Unit On Truck
+
+Ans:
+class Solution {
+public:
+    
+    static bool comp(vector<int> &a, vector<int> &b) { return b[1] < a[1]; };
+    int maximumUnits(vector<vector<int>>& boxTypes, int truckSize) {
+         sort(boxTypes.begin(), boxTypes.end(), comp); 
+        
+        int units = 0;
+		
+        for (int i = 0 ; i < boxTypes.size() and truckSize > 0; i++) {
+            int a = min(truckSize, boxTypes[i][0]);  
+            units += a*boxTypes[i][1]; 
+            truckSize -= a; 
+        }
+        return units;
+        
+    }
+};
